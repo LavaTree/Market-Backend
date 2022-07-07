@@ -1,9 +1,9 @@
-package com.example.demo.dao;
+package com.example.market.dao;
 
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.model.Customer;
+import com.example.market.model.Customer;
 
 public interface CustomerDao {
     
@@ -25,4 +25,8 @@ public interface CustomerDao {
     int addBalanceById(UUID id, double amount);
 
     int subBalanceById(UUID id, double amount);
+
+    int buyItem(UUID id, UUID mID, UUID itemID);
+
 }
+

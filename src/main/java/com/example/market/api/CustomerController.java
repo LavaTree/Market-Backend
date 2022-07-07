@@ -1,6 +1,7 @@
-package com.example.demo.api;
+package com.example.market.api;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.yaml.snakeyaml.error.Mark;
 
-import com.example.demo.model.Customer;
-import com.example.demo.service.CustomerService;
+import com.example.market.model.Customer;
+import com.example.market.service.CustomerService;
+import com.example.market.service.MarketService;
 
 @RequestMapping("api/v1/customer")
 @RestController
 public class CustomerController {
     
     private final CustomerService personService;
+    //private final MarketService marketService;
 
     @Autowired
     public CustomerController (CustomerService personService){
@@ -61,6 +65,11 @@ public class CustomerController {
     @PutMapping(path = "{id}/sub")
     public int subPersonBalanceByID(@PathVariable UUID id, @RequestParam double amount){
         return personService.decreaseBalanceById(id, amount);
+    }
+
+    @PutMapping(path = "{id}/buy/{mID}")
+    public int CustBuyItemByID(@PathVariable UUID id, @PathVariable UUID mID, @RequestParam UUID itemID){
+        return personService.buyItemById(id, mID, itemID);
     }
 
 }

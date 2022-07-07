@@ -1,22 +1,25 @@
-package com.example.demo.dao;
+package com.example.market.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Customer;
+import com.example.market.model.Customer;
 
 @Repository("cusDao")
 public class CustomerDataAccessService implements CustomerDao{
 
     public static List<Customer> DB = new ArrayList<>();
+
+    @Autowired
+    private MarketDataAccessService marketAccess;
     
     @Override
     public int insertPerson (UUID id, Customer person){
-        DB.add(new Customer(id, person.getName(), 0));
+        DB.add(new Customer(id, person.getName(), person.getBalance()));
         return 1;
     }
 
@@ -62,4 +65,14 @@ public class CustomerDataAccessService implements CustomerDao{
         selectPersonById(id).subBalance(amount);
         return 1;
     }
+
+    @Override
+    public int buyItem(UUID id, UUID mID, UUID itemID) {
+        if (DB.indexOf(selectPersonById(id)) < 0 || selectPersonById(id).getBalance() < marketAccess.selectMarketById(mID).getItemByID(itemID).getPrice()) return 0;
+        selectPersonById(id).subBalance(marketAccess.selectMarketById(mID).getItemByID(itemID).getPrice());
+        marketAccess.selectMarketById(mID).removeItemByID(itemID);
+        return 1;
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.market.model;
 
 import java.util.UUID;
 

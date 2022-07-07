@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.market.service;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.MarketDao;
-import com.example.demo.model.Item;
-import com.example.demo.model.Market;
+import com.example.market.dao.MarketDao;
+import com.example.market.model.Item;
+import com.example.market.model.Market;
 
 @Service
 public class MarketService {
@@ -41,8 +41,8 @@ public class MarketService {
         return marketDao.addMarketItem(id, item);
     }
 
-    public int removeItem(UUID id, String name){
-        return marketDao.removeMarketItem(id, name);
+    public int removeItem(UUID id, UUID Iid){
+        return marketDao.removeMarketItem(id, Iid);
     }
 
 }

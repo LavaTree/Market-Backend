@@ -1,4 +1,4 @@
-package com.example.demo.api;
+package com.example.market.api;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Item;
-import com.example.demo.model.Market;
-import com.example.demo.service.MarketService;
+import com.example.market.model.Item;
+import com.example.market.model.Market;
+import com.example.market.service.MarketService;
 
 @RequestMapping("api/v1/market")
 @RestController
@@ -53,9 +53,9 @@ public class MarketController {
         return marketService.addItem(id, item);
     }
 
-    @DeleteMapping(path = "{id}/item/{name}")
-    public int removeItemById(@PathVariable UUID id, @PathVariable String name){
-        return marketService.removeItem(id, name);
+    @DeleteMapping(path = "{id}/item/{Iid}")
+    public int removeItemById(@PathVariable UUID id, @PathVariable UUID Iid){
+        return marketService.removeItem(id, Iid);
     }
 
 

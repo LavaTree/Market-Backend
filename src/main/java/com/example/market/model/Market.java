@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.market.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +30,17 @@ public class Market {
         offers.add(item);
     }
 
-    public void removeItemByName(String name){
+    public void removeItemByID(UUID id){
         for (int i = 0; i < offers.size(); i++){
-            if (offers.get(i).getName().equals(name)) offers.remove(i);
+            if (offers.get(i).getId().equals(id)) offers.remove(i);
         }
+    }
+
+    public Item getItemByID(UUID id){
+        for (int i = 0; i < offers.size(); i++){
+            if (offers.get(i).getId().equals(id)) return offers.get(i);
+        }
+        return null;
     }
 
     public List<Item> getOffers(){

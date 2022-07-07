@@ -1,14 +1,13 @@
-package com.example.demo.dao;
+package com.example.market.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Item;
-import com.example.demo.model.Market;
+import com.example.market.model.Item;
+import com.example.market.model.Market;
 
 @Repository("marDao")
 public class MarketDataAccessService implements MarketDao{
@@ -51,9 +50,9 @@ public class MarketDataAccessService implements MarketDao{
     }
 
     @Override
-    public int removeMarketItem(UUID id, String name) {
+    public int removeMarketItem(UUID id, UUID Iid) {
         if (selectMarketById(id) == null) return 0;
-        selectMarketById(id).removeItemByName(name);
+        selectMarketById(id).removeItemByID(Iid);
         return 1;
     }
 

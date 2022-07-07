@@ -1,15 +1,14 @@
-package com.example.demo.service;
+package com.example.market.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.CustomerDao;
-import com.example.demo.model.Customer;
+import com.example.market.dao.CustomerDao;
+import com.example.market.model.Customer;
 
 @Service
 public class CustomerService {
@@ -48,6 +47,10 @@ public class CustomerService {
     
     public int decreaseBalanceById (UUID id, double balance){
         return customerDao.subBalanceById(id, balance);
+    }
+        
+    public int buyItemById (UUID id, UUID mID, UUID itemID){
+        return customerDao.buyItem(id, mID, itemID);
     }
 
 }

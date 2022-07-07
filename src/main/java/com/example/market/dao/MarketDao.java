@@ -1,10 +1,10 @@
-package com.example.demo.dao;
+package com.example.market.dao;
 
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.model.Item;
-import com.example.demo.model.Market;
+import com.example.market.model.Item;
+import com.example.market.model.Market;
 
 public interface MarketDao {
     
@@ -23,5 +23,5 @@ public interface MarketDao {
 
     int addMarketItem(UUID id, Item item);
 
-    int removeMarketItem(UUID id, String name);
+    int removeMarketItem(UUID id, UUID Iid);
 }
